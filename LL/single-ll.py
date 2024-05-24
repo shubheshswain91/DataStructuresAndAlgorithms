@@ -27,17 +27,30 @@ class LinkedList:
         return True
     
     def pop(self):
+        '''
+        We are taking two temporary variables temp and pre and initially assign it with the head node
+        '''
+
         if self.length == 0:
             return None
         temp = self.head
         pre = self.head
-        while(temp.next):
+        '''
+            In the below while loop we are traversing till the last node i.e with the next value is None. In each iteration we are updating the pre 
+            node with the next temp node and the temp node goes to the next node while the pre node remains one node behind.
+            At the end node when the temp->next is None, the while becomes false and we come out of it.
+        '''
+        while(temp.next):  
             pre = temp 
             temp = temp.next
+        '''
+            Now that we have the second last node saved in the pre node, we can update the tail node with it and make the tail->next = None and also 
+            decrement the length value.
+        '''    
         self.tail = pre
         self.tail.next = None
         self.length -= 1
-        if self.length == 0:
+        if self.length == 0:   # condition to check if there is no node
             self.head = None
             self.tail = None
         return temp    
