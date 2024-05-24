@@ -25,6 +25,23 @@ class LinkedList:
             self.tail = new_node
         self.length += 1
         return True
+    
+    def pop(self):
+        if self.length == 0:
+            return None
+        temp = self.head
+        pre = self.head
+        while(temp.next):
+            pre = temp 
+            temp = temp.next
+        self.tail = pre
+        self.tail.next = None
+        self.length -= 1
+        if self.length == 0:
+            self.head = None
+            self.tail = None
+        return temp    
+
 
     def prepend(self, value):
         pass
@@ -48,6 +65,13 @@ my_ll.make_empty()
 my_ll.append(4)
 my_ll.append(5)
 my_ll.print_list()
+my_ll.pop()
+my_ll.print_list()
+my_ll.pop()
+my_ll.print_list()
+my_ll.pop()
+my_ll.print_list()
+
 
 # print(my_ll.head.value)
 # print(my_ll.tail.value)
