@@ -87,12 +87,67 @@ class LinkedList:
         if curr != None:
             new_node.next = curr.next 
             curr.next = new_node 
+            self.n += 1
         else:
-            return 'Item Not found'    
-        # case 2 Item wasn't found and curr.value  is None i.e., curr -> None
 
-        print(curr.value)    
+            print('Item Not found')    # case 2 Item wasn't found and curr.value  is None i.e., curr -> None
+            return 'Item Not found'
 
+        #print(curr.value)   
+
+    def clear(self):
+        self.head = None
+        self.n = 0
+
+    def delete_head(self):
+
+        if self.head == None:
+            # empty
+            #print('Empty LL')
+            return "Empty LL"
+        self.head = self.head.next
+        self.n -= 1
+
+    def pop(self):
+
+        if self.head == None:
+            return 'Empty LL'
+        
+        curr = self.head
+
+        # if LL has only one item 
+        if curr.next == None:
+            return self.delete_head()
+
+        while curr.next.next != None:
+            curr = curr.next
+
+        # curr is 2nd last node
+        curr.next = None 
+        self.n -= 1  
+
+    def remove(self, value):
+
+        if self.head == None:
+            return 'Empty LL'
+
+        if self.head == value:
+            # you want to remove the head node
+            return self.delete_head()
+
+        curr = self.head
+        while curr.next != None:
+            if curr.next.value == value:
+                break
+            curr = curr.next
+        # case 1: Item not found   
+        # case 2: Item found
+        if curr.next == None:
+
+            return "Not found"
+        else:
+            curr.next = curr.next.next
+                    
 
 
 L = LinkedList()       
@@ -100,12 +155,10 @@ L = LinkedList()
 
 L.insert_head(1)
 L.insert_head(2)
-L.insert_head(3)
-L.insert_head(4)
-L.insert_after(2,200)
-#L.traverse()
+
 print(L)
-#print(len(L))
-L.insert_after(20,200)
-L.append(5)
+
+L.remove(1)
+L.remove(2)
+L.remove(2)
 print(L)
