@@ -45,7 +45,55 @@ class LinkedList:
             #print(curr.value)
             result = result + str(curr.value) + '->'
             curr = curr.next
-        return result    
+        return result[:-2]    
+    
+    def append(self, value):
+
+        new_node = Node(value)
+
+        if self.head == None:
+            # empty 
+            self.head = new_node
+            self.n += 1
+            return
+        
+
+        curr = self.head
+        '''
+        V.Imp
+        If you want to stop at particular node starting from the first node, then curr != None, for example 1->2->3, if  you want to stop at 3.
+        If you want to stop at 2, then condition will be curr.next != None, if at 1 then curr.next.next != None
+        
+        '''
+        while curr.next != None:
+            curr = curr.next
+
+        # you are at the last node 
+        curr.next = new_node
+        self.n += 1
+
+    def insert_after(self, after, value):
+
+        new_node = Node(value)
+
+        curr = self.head 
+
+        while curr != None:
+            if curr.value == after:
+                break 
+            curr = curr.next
+
+        # case 1: You found the item i.e., curr -> not None
+        if curr != None:
+            new_node.next = curr.next 
+            curr.next = new_node 
+        else:
+            return 'Item Not found'    
+        # case 2 Item wasn't found and curr.value  is None i.e., curr -> None
+
+        print(curr.value)    
+
+
 
 L = LinkedList()       
 
@@ -54,6 +102,10 @@ L.insert_head(1)
 L.insert_head(2)
 L.insert_head(3)
 L.insert_head(4)
+L.insert_after(2,200)
 #L.traverse()
 print(L)
 #print(len(L))
+L.insert_after(20,200)
+L.append(5)
+print(L)
