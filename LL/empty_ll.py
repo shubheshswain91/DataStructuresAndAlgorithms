@@ -148,6 +148,17 @@ class LinkedList:
         else:
             curr.next = curr.next.next
                     
+    def search(self, item):
+
+        curr = self.head
+        pos = 0
+        while curr != None:
+            if curr.value == item:
+                return pos
+            cur = curr.next
+            pos += 1
+        return "Not found"    
+
 
 
 L = LinkedList()       
@@ -155,11 +166,7 @@ L = LinkedList()
 
 L.insert_head(1)
 L.insert_head(2)
-
+L.insert_head(4)
 print(L)
-
-L.remove(1)
-L.remove(2)
-L.remove(2)
-L.remove(1)
-print(L)
+L.search(100)
+print(L.search(2))
