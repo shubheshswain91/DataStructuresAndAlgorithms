@@ -157,7 +157,19 @@ class LinkedList:
                 return pos
             cur = curr.next
             pos += 1
-        return "Not found"    
+        return "Not found"   
+
+    def __getitem__(self, index):
+        curr = self.head
+        pos = 0
+
+        while curr != None:
+            if pos == index:
+                return curr.value
+            curr = curr.next
+            pos += 1
+        return "IndexError"
+
 
 
 
@@ -169,4 +181,5 @@ L.insert_head(2)
 L.insert_head(4)
 print(L)
 L.search(100)
+print(L[2])
 print(L.search(2))
